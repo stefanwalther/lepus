@@ -15,20 +15,18 @@ class Lepus {
 
   connect() {
 
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       if (_connection) {
+        console.log('reuse connection');
         return resolve(_connection);
-      } 
-      // Console.log('connect');
+      }
       return amqp.connect(this.connectionConfig)
         .then(conn => {
-          // Console.log('reuse connection');
           _connection = conn;
           resolve(_connection);
-        });
-      
+        })
+        .catch(err => reject(err));
     });
-
   }
 
   async disconnect() {

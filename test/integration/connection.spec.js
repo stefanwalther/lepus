@@ -18,6 +18,15 @@ describe('Connection', () => {
 
   });
 
+  describe('Initialization', () => {
+
+    it('fails with wrong connection', () => {
+      let lepus = new Lepus('amqp://guest:guest@localhost:1111');
+      return expect(lepus.connect()).to.be.rejectedWith(Error);
+    }).timeout(500);
+
+  });
+
   describe('Reuse', () => {
     let lepus = null;
     before(() => {
