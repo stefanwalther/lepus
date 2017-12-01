@@ -12,6 +12,10 @@ gen-readme:				## Update README.md.
 	npm run docs
 .PHONY: gen-readme
 
+gen-readme-only-verb:
+	docker run --rm -v ${PWD}:/opt/verb stefanwalther/verb
+.PHONY: gen-readme-only-verb
+
 cover:
 	istanbul cover _mocha -- test --recursive --timeout=20000
 .PHONY: cover
