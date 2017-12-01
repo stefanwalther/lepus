@@ -25,6 +25,10 @@ jobs:
             curl -L -o /tmp/docker-$DOCKER_VER.tgz https://download.docker.com/linux/static/${DOCKER_TRACK:-stable}/x86_64/docker-$DOCKER_VER.tgz
             tar -xz -C /tmp -f /tmp/docker-${DOCKER_VER}.tgz
             mv /tmp/docker/* /usr/bin
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
   test:
     docker:
       - image: circleci/node:8.6.0
