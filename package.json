@@ -39,7 +39,7 @@
     "test:unit": "npm run lint:test && mocha './test/unit/**/*.spec.js' --require './test/mocha.conf.js'",
     "test:unit:coverage": "nyc node_modules/.bin/_mocha ./test/unit/**/*.spec.js --require './test/mocha.conf.js' --report lcovonly -- -R spec && codecov",
     "test:integration:coverage": "nyc node_modules/.bin/_mocha ./test/integration/**/*.spec.js --require './test/mocha.conf.js' --report lcovonly -- -R spec && codecov",
-    "test:coverage": "istanbul cover node_modules/.bin/_mocha ./test/**/*.spec.js --require './test/mocha.conf.js' --report lcovonly -- -R spec && codecov",
+    "test:coverage": "nyc node_modules/.bin/_mocha ./test/**/*.spec.js --require './test/mocha.conf.js' --report lcovonly -- -R spec && codecov",
     "precommit": "npm run lint"
   },
   "dependencies": {
