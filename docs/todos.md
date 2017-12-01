@@ -1,0 +1,1 @@
+- If we don't spin up docker containers, we can remove `child-process-promise`

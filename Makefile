@@ -9,3 +9,7 @@ help:							## Show this help.
 gen-readme:				## Update README.md
 	npm run docs
 .PHONY: gen-readme
+
+cover:
+	istanbul cover _mocha -- test --recursive --timeout=20000
+.PHONY: cover
