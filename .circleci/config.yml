@@ -13,7 +13,7 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - add_ssh_keys
-       - run:
+      - run:
           name: Install npm
           command: npm install
       - setup_remote_docker:

@@ -20,3 +20,7 @@ circleci:					## Run circleci build locally.
 	circleci build
 .PHONY: circleci
 
+circleci-validate:
+	circleci config validate
+.PHONY: circleci validate
+
