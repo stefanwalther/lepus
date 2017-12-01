@@ -2,25 +2,56 @@
   "name": "lepus",
   "version": "0.1.0",
   "description": "Convenience wrapper around amqplib.",
-  "main": "index.js",
-  "scripts": {
-    "docs": "npm run api-docs && docker run --rm -v ${PWD}:/opt/verb stefanwalther/verb",
-    "api-docs": "docker run --rm -v ${PWD}:/opt/jsdoc2md stefanwalther/jsdoc2md ./src/index.js > ./docs/api-docs.md"
+  "keywords": [
+    "amqp",
+    "amqplib",
+    "broker",
+    "message",
+    "publish",
+    "rabbit",
+    "rabbitmq",
+    "subscribe",
+    "taskQueue"
+  ],
+  "homepage": "https://github.com/stefanwalther/lepus#readme",
+  "bugs": {
+    "url": "https://github.com/stefanwalther/lepus/issues"
   },
+  "license": "MIT",
+  "author": "Stefan Walther <swr.nixda@gmail.com> (http://qliksite.io)",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stefanwalther/lepus.git"
   },
-  "keywords": [
-    "rabbit",
-    "rabbitmq",
-    "amqp",
-    "amqplib"
-  ],
-  "author": "Stefan Walther <swr.nixda@gmail.com> (http://qliksite.io)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/stefanwalther/lepus/issues"
+  "scripts": {
+    "api-docs": "docker run --rm -v ${PWD}:/opt/jsdoc2md stefanwalther/jsdoc2md ./src/index.js > ./docs/api-docs.md",
+    "docs": "npm run api-docs && docker run --rm -v ${PWD}:/opt/verb stefanwalther/verb",
+    "lint": "npm run lint:src && npm run lint:test",
+    "lint:fix": "npm run lint:src:fix && npm run lint:test:fix",
+    "lint:src": "eslint src",
+    "lint:src:fix": "eslint src --fix",
+    "lint:test": "eslint test",
+    "lint:test:fix": "eslint test --fix",
+    "test": "npm run test:unit",
+    "test:integration": "npm run lint:test && mocha './test/unit/**/*.spec.js' --require './test/mocha.conf.js'",
+    "test:unit": "npm run lint:test && mocha './test/unit/**/*.spec.js' --require './test/mocha.conf.js'",
+    "precommit": "npm run lint"
   },
-  "homepage": "https://github.com/stefanwalther/lepus#readme"
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "js-yaml": "^3.10.0",
+    "lodash": "^4.17.4",
+    "promise-retry": "^1.1.1",
+    "winster": "^0.2.7"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "child-process-promise": "^2.2.1",
+    "eslint": "^4.12.1",
+    "eslint-config-space-single": "^0.3.0",
+    "husky": "^0.14.3",
+    "istanbul": "^0.4.5",
+    "mocha": "^4.0.1"
+  }
 }

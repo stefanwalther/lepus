@@ -2,6 +2,9 @@
 
 > Convenience wrapper around amqplib.
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sammler/lepus.svg)](https://greenkeeper.io/)
+[![CircleCI](https://img.shields.io/circleci/project/github/sammler/lepus.svg)](https://circleci.com/gh/sammler/lepus)
+
 ---
 
 > This is work in progress, just some sugar functions on top of amqplib I use in some of my projects.
@@ -9,7 +12,19 @@
 
 ---
 
-## API
+## Features
+
+## Install
+
+```
+$ npm install lepus --save
+```
+
+## Usage
+
+### Basic Usage
+
+### API
 
 See [API docs](./docs/api-docs.md)
 
@@ -23,6 +38,26 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 I cannot guarantee that I will merge all PRs but I will evaluate them all.
 
+### Run tests
+
+Unit tests:
+
+```bash
+$ npm run test:unit
+```
+
+Integration tests:
+
+First start RabbitMQ locally:
+```sh
+$ docker-compose up -d
+```
+
+Then run the integration tests:
+```bash
+$ npm run test:unit
+```
+
 ### Updating docs
 
 ```sh
@@ -33,6 +68,8 @@ $ make gen-readme
 
 Here are links & libraries that helped me:
 - https://github.com/lanetix/node-lanetix-amqp-easy
+- https://github.com/nowait/amqp
+- https://github.com/dial-once/node-bunnymq
 
 ## About
 

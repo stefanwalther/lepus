@@ -1,4 +1,6 @@
 
+# Todo: Install circleci if needed, see mongo-exporter
+
 help:							## Show this help.
 	@echo ''
 	@echo 'Available commands:'
@@ -6,6 +8,23 @@ help:							## Show this help.
 	@echo ''
 .PHONY: help
 
-gen-readme:				## Update README.md
+gen-readme:				## Update README.md.
 	npm run docs
 .PHONY: gen-readme
+
+gen-readme-only-verb:
+	docker run --rm -v ${PWD}:/opt/verb stefanwalther/verb
+.PHONY: gen-readme-only-verb
+
+cover:
+	istanbul cover _mocha -- test --recursive --timeout=20000
+.PHONY: cover
+
+circleci:					## Run circleci build locally.
+	circleci build
+.PHONY: circleci
+
+circleci-validate:
+	circleci config validate
+.PHONY: circleci validate
+
