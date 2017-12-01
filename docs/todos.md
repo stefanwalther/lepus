@@ -1,1 +1,5 @@
 - If we don't spin up docker containers, we can remove `child-process-promise`
+- Test circleci codecov
+- Remove unnecessary code coverage tools & packages
+- Commit bugfix for winster
+- Fix generation of api-docs (ES7/babel, etc.)
