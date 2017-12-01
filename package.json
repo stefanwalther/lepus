@@ -22,5 +22,14 @@
   "bugs": {
     "url": "https://github.com/stefanwalther/lepus/issues"
   },
-  "homepage": "https://github.com/stefanwalther/lepus#readme"
+  "homepage": "https://github.com/stefanwalther/lepus#readme",
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "js-yaml": "^3.10.0",
+    "lodash": "^4.17.4",
+    "winster": "^0.2.7"
+  }
 }
