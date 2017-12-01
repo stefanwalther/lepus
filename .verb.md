@@ -4,6 +4,7 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/stefanwalther/lepus.svg)](https://greenkeeper.io/)
 [![CircleCI](https://img.shields.io/circleci/project/github/stefanwalther/lepus.svg)](https://circleci.com/gh/stefanwalther/lepus)
+[![codecov](https://codecov.io/gh/stefanwalther/lepus/branch/master/graph/badge.svg)](https://codecov.io/gh/stefanwalther/lepus)
 
 ---
 
