@@ -33,7 +33,7 @@
     "lint:src:fix": "eslint src --fix",
     "lint:test": "eslint test",
     "lint:test:fix": "eslint test --fix",
-    "test": "npm run test:unit",
+    "test": "npm run test:unit && npm run test:unit",
     "test:integration": "npm run lint:test && mocha './test/unit/**/*.spec.js' --require './test/mocha.conf.js'",
     "test:unit": "npm run lint:test && mocha './test/unit/**/*.spec.js' --require './test/mocha.conf.js'",
     "precommit": "npm run lint"
