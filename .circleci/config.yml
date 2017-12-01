@@ -15,7 +15,7 @@ jobs:
       - add_ssh_keys
       - run:
           name: Install npm
-          command: npm install
+          command: npm install --silent
       - setup_remote_docker:
           version: 17.11.0-ce
       - run:
@@ -29,24 +29,6 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-  test:
-    docker:
-      - image: circleci/node:8.6.0
-      - image: sammlerio/rabbitmq:0.1.3
-    steps:
-      - checkout
       - run:
           name: Test
           command: npm test
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
-#          filters:
-#            branches:
-#              only: master
