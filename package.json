@@ -4,7 +4,8 @@
   "description": "Convenience wrapper around amqplib.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docs": "npm run api-docs && docker run --rm -v ${PWD}:/opt/verb stefanwalther/verb",
+    "api-docs": "docker run --rm -v ${PWD}:/opt/jsdoc2md stefanwalther/jsdoc2md ./src/index.js > ./docs/api-docs.md"
   },
   "repository": {
     "type": "git",
