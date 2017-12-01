@@ -13,3 +13,7 @@ gen-readme:				## Update README.md
 cover:
 	istanbul cover _mocha -- test --recursive --timeout=20000
 .PHONY: cover
+
+circleci:
+	circleci build
+.PHONY: circleci
