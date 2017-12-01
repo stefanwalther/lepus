@@ -19,20 +19,25 @@ describe('Connection', () => {
 
   describe('Initialization', () => {
 
+    let lepus = null;
+    after(async () => {
+      await lepus.disconnect();
+    });
+
     it('fails with wrong connection', () => {
-      let lepus = new Lepus('amqp://guest:guest@localhost:1111', {retry_behavior: {enabled: false}});
+      lepus = new Lepus('amqp://guest:guest@localhost:1111', {retry_behavior: {enabled: false}});
       return expect(lepus.connect()).to.be.rejectedWith(Error);
     }).timeout(2000);
 
   });
 
-  describe('Reuse', () => {
+  xdescribe('Reuse', () => {
     let lepus = null;
     before(() => {
       lepus = new Lepus();
     });
     after(async () => {
-      lepus.disconnect();
+      await lepus.disconnect();
     });
     it('reconnects if the connection is already established', async () => {
 
