@@ -9,13 +9,14 @@ help:							## Show this help.
 .PHONY: help
 
 gen-readme:				## Update README.md.
-	npm run docs
+	npm run readme
 .PHONY: gen-readme
 
-gen-readme-only-verb:
-	docker run --rm -v ${PWD}:/opt/verb stefanwalther/verb
-.PHONY: gen-readme-only-verb
+gen-docs:					## Update all docs (README.md, api-docs, etc.)
+	npm run docs
+.PHONY: gen-docs
 
+# Todo: delete
 cover:
 	istanbul cover _mocha -- test --recursive --timeout=20000
 .PHONY: cover
@@ -24,7 +25,11 @@ circleci:					## Run circleci build locally.
 	circleci build
 .PHONY: circleci
 
-circleci-validate:
+circleci-validate:## Validate the circleci config-file.
 	circleci config validate
 .PHONY: circleci validate
+
+test:
+	npm run test
+.PHONY: test
 
