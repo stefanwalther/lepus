@@ -5,6 +5,6 @@ services:
     image: "sammlerio/rabbitmq:0.1.3"
     ports:
       - "8080:15672"
-      - "5500:5672"
+      - "5672:5672"
     logging:
       driver: none
