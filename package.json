@@ -1,0 +1,25 @@
+{
+  "name": "lepus",
+  "version": "0.1.0",
+  "description": "Convenience wrapper around amqplib.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefanwalther/lepus.git"
+  },
+  "keywords": [
+    "rabbit",
+    "rabbitmq",
+    "amqp",
+    "amqplib"
+  ],
+  "author": "Stefan Walther <swr.nixda@gmail.com> (http://qliksite.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stefanwalther/lepus/issues"
+  },
+  "homepage": "https://github.com/stefanwalther/lepus#readme"
+}
