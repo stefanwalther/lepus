@@ -40,13 +40,12 @@ I cannot guarantee that I will merge all PRs but I will evaluate them all.
 
 ### Run tests
 
-Unit tests:
+#### Unit tests:
 
 ```bash
 $ npm run test:unit
 ```
-
-Integration tests:
+#### Integration tests:
 
 First start RabbitMQ locally:
 ```sh
