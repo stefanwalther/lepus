@@ -15,15 +15,14 @@ describe('Connection', () => {
       let conn = await lepus.connect();
       expect(conn).to.exist;
     });
-
   });
 
   describe('Initialization', () => {
 
     it('fails with wrong connection', () => {
-      let lepus = new Lepus('amqp://guest:guest@localhost:1111');
+      let lepus = new Lepus('amqp://guest:guest@localhost:1111', {retry_behavior: {enabled: false}});
       return expect(lepus.connect()).to.be.rejectedWith(Error);
-    }).timeout(500);
+    }).timeout(2000);
 
   });
 
