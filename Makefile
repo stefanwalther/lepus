@@ -16,6 +16,10 @@ gen-docs:					## Update all docs (README.md, api-docs, etc.)
 	npm run docs
 .PHONY: gen-docs
 
+gen-api-docs:
+	node_modules/.bin/jsdoc2md --configure $(PWD)/jsdoc.json $(PWD)/src/index.js > $(PWD)/docs/api-docs.md
+.PHONY: gen-api-docs
+
 # Todo: delete
 cover:
 	istanbul cover _mocha -- test --recursive --timeout=20000
@@ -32,4 +36,13 @@ circleci-validate:## Validate the circleci config-file.
 test:
 	npm run test
 .PHONY: test
+
+# Usage: make watch WATCHMAKE=foo
+# Borrowed from: https://stackoverflow.com/questions/7539563/is-there-a-smarter-alternative-to-watch-make/27643754#27643754
+watch:
+	while true; do \
+		make $(WATCHMAKE); \
+		inotifywait -qre close_write .; \
+	done
+.PHONY: watch
 
