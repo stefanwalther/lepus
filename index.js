@@ -1,1 +1,2 @@
-const lepus = require('./src');
+const Lepus = require('./src');
+module.exports = Lepus;
