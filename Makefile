@@ -16,7 +16,8 @@ gen-docs:					## Update all docs (README.md, api-docs, etc.)
 	npm run docs
 .PHONY: gen-docs
 
-gen-api-docs:
+# Todo: Fix docker based solution here ...
+gen-api-docs:			## Generate the api-docs
 	node_modules/.bin/jsdoc2md --configure $(PWD)/jsdoc.json $(PWD)/src/index.js > $(PWD)/docs/api-docs.md
 .PHONY: gen-api-docs
 
@@ -37,6 +38,7 @@ test:
 	npm run test
 .PHONY: test
 
+# Todo: This can be removed
 # Usage: make watch WATCHMAKE=foo
 # Borrowed from: https://stackoverflow.com/questions/7539563/is-there-a-smarter-alternative-to-watch-make/27643754#27643754
 watch:
