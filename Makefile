@@ -22,9 +22,9 @@ gen-api-docs:			## Generate the api-docs
 .PHONY: gen-api-docs
 
 # Todo: delete
-cover:
+coverage:					## Code coverage
 	istanbul cover _mocha -- test --recursive --timeout=20000
-.PHONY: cover
+.PHONY: coverage
 
 circleci:					## Run circleci build locally.
 	circleci build
