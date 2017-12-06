@@ -31,11 +31,32 @@ describe('UNIT => Topology', () => {
     });
   });
 
-  describe('verification of the input file\'s content', () => {
-    it('throws an error if not a valid json document');
-    it('passes if a valid json document');
-    it('throws an error if not a valid yaml file');
-    it('passes if a valid yaml file');
+  describe('verification of the input file\'s structure', () => {
+    const basePath = path.join(__dirname, './../fixtures/topologies/file-content');
+    it('throws an error if not a valid json document', () => {
+      const file = path.resolve(path.join(basePath, 'json-invalid.json'));
+      expect(() => validator.validateTopologyFileStructure(file)).to.throw('Invalid JSON file');
+    });
+    it('passes if a valid json document', () => {
+      const file = path.resolve(path.join(basePath, 'json-valid.json'));
+      expect(() => validator.validateTopologyFileStructure(file)).to.not.throw();
+    });
+    it('throws an error if not a valid yaml file', () => {
+      const file = path.resolve(path.join(basePath, 'yaml-invalid.yaml'));
+      expect(() => validator.validateTopologyFileStructure(file)).to.throw();
+    });
+    it('throws an error if not a valid yml file', () => {
+      const file = path.resolve(path.join(basePath, 'yml-invalid.yml'));
+      expect(() => validator.validateTopologyFileStructure(file)).to.throw();
+    });
+    it('passes if a valid yaml file', () => {
+      const file = path.resolve(path.join(basePath, 'yaml-valid.yaml'));
+      expect(() => validator.validateTopologyFileStructure(file)).to.not.throw();
+    });
+    it('passes if a valid yml file', () => {
+      const file = path.resolve(path.join(basePath, 'yml-valid.yml'));
+      expect(() => validator.validateTopologyFileStructure(file)).to.not.throw();
+    });
     it('throw an error if not matching the scheme');
   });
 

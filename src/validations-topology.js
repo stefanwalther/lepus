@@ -1,5 +1,15 @@
 const path = require('path');
 const fs = require('fs-extra');
+const yaml = require('js-yaml');
+
+function isJson(str) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
 
 class ValidatorTopology {
 
@@ -24,8 +34,35 @@ class ValidatorTopology {
     }
   }
 
-  static validateTopologyContent(/* file */) {
+  /**
+   * Validate the structure of the topology file.
+   *
+   * Note: This will not validate the content.
+   *
+   * @param file
+   * @returns {boolean}
+   */
+  static validateTopologyFileStructure(file) {
 
+    const ext = path.extname(file).toLowerCase();
+    switch (ext) {
+      case '.json':
+        if (!isJson(fs.readFileSync(file))) {
+          throw new Error('Invalid JSON file');
+        }
+        break;
+      case '.yml':
+      case '.yaml':
+        try {
+          yaml.safeLoad(fs.readFileSync(file, 'utf8'));
+        } catch (e) {
+          console.log(e);
+          throw e;
+        }
+        break;
+      default:
+        return true;
+    }
   }
 
 }
