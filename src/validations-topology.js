@@ -46,6 +46,13 @@ class ValidatorTopology {
 
     const ext = path.extname(file).toLowerCase();
     switch (ext) {
+      case '.js':
+        try {
+          require(file);
+        } catch (e) {
+          throw e;
+        }
+        break;
       case '.json':
         if (!isJson(fs.readFileSync(file))) {
           throw new Error('Invalid JSON file');
