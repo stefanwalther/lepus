@@ -1,6 +1,6 @@
 const Lepus = require('./../../src/');
 
-describe('publishMessage', () => {
+describe('INTEGRATION => publishMessage', () => {
   let lepus = null;
   before(async () => {
     lepus = new Lepus();

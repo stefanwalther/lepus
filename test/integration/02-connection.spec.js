@@ -1,6 +1,6 @@
 const Lepus = require('./../../src');
 
-describe('Connection', () => {
+describe('INTEGRATION => Connection', () => {
 
   describe('Initialization', async () => {
     let lepus = null;

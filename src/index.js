@@ -13,7 +13,9 @@ const LOG_DETAIL = false;
 /**
  * RabbitMQ Server definition.
  *
- * @typedef {string|object} rabbitConnectionDef - Connection string of the server.
+ * Note: passing the Connection definition as an object is not supported, yet.
+ *
+ * @typedef {string} rabbitConnectionDef - Connection string of the server.
  */
 
 /**
@@ -64,7 +66,10 @@ class Lepus {
    * Connect to RabbitMQ.
    *
    * Very similar to amqp.connect, but with the big difference, that if the connection
-   * fails, the operation will retry as defined in opts.retry_behavior
+   * fails, the operation will retry as defined in opts.retry_behavior.
+   *
+   * Furthermore, in case there is already an existing connection available, this will be returned.
+   * No new connection will be established.
    *
    * @param {rabbitConnectionDef} connOpts.server - Connection information for the server.
    * @param {retry_behavior} connOpts.retry_behavior - Retry behavior for establishing the connection.
@@ -99,6 +104,12 @@ class Lepus {
     });
   }
 
+  /**
+   * Disconnect from the server.
+   * The cached connection will be destroyed.
+   *
+   * @returns {Promise<void>}
+   */
   async disconnect() {
     if (_connection) {
       await _connection.close();
