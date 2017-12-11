@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "amqplib": "^0.5.2",
-    "fs-extra": "^4.0.3",
+    "fs-extra": "^5.0.0",
     "joi": "^13.0.2",
     "js-yaml": "^3.10.0",
     "lodash": "^4.17.4",
