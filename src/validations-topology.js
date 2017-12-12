@@ -1,5 +1,5 @@
 const path = require('path');
-const fs = require('fs-extra');
+const fs = require('fs');
 const yaml = require('js-yaml');
 
 function isJson(str) {
@@ -11,6 +11,9 @@ function isJson(str) {
   return true;
 }
 
+/**
+ * Validator for topology files.
+ */
 class ValidatorTopology {
 
   /**
@@ -39,8 +42,8 @@ class ValidatorTopology {
    *
    * Note: This will not validate the content.
    *
-   * @param file
-   * @returns {boolean}
+   * @param {String} file - Absolute path the the file.
+   * @returns {boolean} - Returns true if no error occurred, otherwise will throw the error.
    */
   static validateTopologyFileStructure(file) {
 
@@ -71,7 +74,6 @@ class ValidatorTopology {
         return true;
     }
   }
-
 }
 
 module.exports = ValidatorTopology;

@@ -18,7 +18,7 @@ gen-docs:					## Update all docs (README.md, api-docs, etc.)
 
 # Todo: Fix docker based solution here ...
 gen-api-docs:			## Generate the api-docs
-	node_modules/.bin/jsdoc2md --configure $(PWD)/jsdoc.json $(PWD)/src/index.js > $(PWD)/docs/api-docs.md
+	node_modules/.bin/jsdoc2md --configure $(PWD)/jsdoc.json $(PWD)/src/*.js > $(PWD)/docs/api-docs.md
 .PHONY: gen-api-docs
 
 # Todo: delete

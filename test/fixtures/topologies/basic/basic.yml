@@ -1,0 +1,28 @@
+- exchanges:
+  - id: e1
+    key: cmd.heartbeat
+    exchange:
+      type: topic
+      name: cmd
+      arguments:
+        durable: true
+    payload:
+      ts: "{{ts}}"
+    options:
+      correlationId: "{{correlation_id}}"
+      
+      
+- queues:
+  - id: q-e1
+    for: e1
+    name: queue-heartbeat
+  - id: q2-e2
+    for: e1
+    name: queue-heartbeat-another
+    
+    
+- subscriptions:
+  - id: s-1
+    for: q-e1
+  - id: s-2
+    for: q-e2

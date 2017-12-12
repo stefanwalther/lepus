@@ -1,4 +1,5 @@
 const validator = require('./../../src/validations-topology');
+const Topology = require('./../../src/topology');
 const path = require('path');
 
 describe('UNIT => Topology', () => {
@@ -69,7 +70,26 @@ describe('UNIT => Topology', () => {
       const file = path.resolve(path.join(basePath, 'yml-valid.yml'));
       expect(() => validator.validateTopologyFileStructure(file)).to.not.throw();
     });
-
   });
 
+  describe('New Topology', () => {
+    const basePath = path.join(__dirname, './../fixtures/topologies/empty');
+    const file = path.resolve(path.join(basePath, 'empty.yml'));
+    let topology = null;
+    before(() => {
+      topology = new Topology(file);
+    });
+    it('to have a property `topology` to be null by default', () => {
+      expect(topology).to.have.a.property('topology').to.be.null;
+    });
+    it('to have a property `exchanges` to be null by default`', () => {
+      expect(topology).to.have.a.property('exchanges').to.be.null;
+    });
+    it('to have a property `topics` to be null by default`', () => {
+      expect(topology).to.have.a.property('topics').to.be.null;
+    });
+    it('to have a property `queues` to be null by default`', () => {
+      expect(topology).to.have.a.property('queues').to.be.null;
+    });
+  });
 });
