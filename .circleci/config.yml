@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     environment:
-      DOCKER_VER: "17.11.0-ce"
+      DOCKER_VER: "17.06.0-ce"
       DOCKER_TRACK: "edge"  # edge or stable
       NODE_VER: "8.6.0"
       RABBITMQ_VER: "0.1.3"
