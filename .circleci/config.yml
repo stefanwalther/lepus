@@ -19,7 +19,7 @@ jobs:
           name: Install npm
           command: npm install --silent
       - setup_remote_docker:
-          version: "${DOCKER_VER}"
+          version: 17.06.0-ce
       - run:
           name: Install Docker client
           command: |
