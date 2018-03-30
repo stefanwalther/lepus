@@ -8,6 +8,14 @@ help:							## Show this help.
 	@echo ''
 .PHONY: help
 
+up: 							## Bring up the environment.
+	docker-compose up
+.PHONY: up
+
+down:							## Bring the environment down.
+	docker-compose down
+.PHONY: down
+
 gen-readme:				## Update README.md.
 	npm run readme
 .PHONY: gen-readme
