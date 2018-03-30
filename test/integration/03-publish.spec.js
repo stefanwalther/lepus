@@ -1,4 +1,5 @@
 const Lepus = require('./../../src/');
+const sinon = require('sinon');
 
 describe('INTEGRATION => publishMessage', () => {
   let lepus = null;
@@ -11,7 +12,7 @@ describe('INTEGRATION => publishMessage', () => {
   });
 
   it('succeeds with default settings', async () => {
-    let opts = {
+    let publishOpts = {
       exchange: {
         type: 'topic',
         name: 'test'
@@ -20,6 +21,21 @@ describe('INTEGRATION => publishMessage', () => {
       payload: {},
       options: {}
     };
+    let subscribeOpts = Object.assign(publishOpts, {
+      queue: {
+        name: 'test-queue'
+      }
+    });
+
+    await lepus.publishMessage(publishOpts);
+
+    let spy = sinon.stub().resolves();
+    await lepus.subscribeMessage(subscribeOpts, spy);
+    expect(spy).to.have.been.calledOnce;
+
+    expect(spy.firstCall.args[0]).to.be.empty;
+    expect(spy.firstCall.args[1]).to.have.a.property('fields').to.deep.contains({exchange: 'test'});
+    expect(spy.firstCall.args[1]).to.have.a.property('fields').to.deep.contains({routingKey: publishOpts.key});
   });
 
 });
