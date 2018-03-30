@@ -29,6 +29,57 @@ $ npm install lepus --save
 
 ### Basic Usage
 
+```
+const Lepus = require('lepus');
+
+(async () => {
+  let lepus = new Lepus();
+  await lepus.connect();
+  
+  // Publish a message
+  let publishOpts = {
+      exchange: {
+        type: 'topic',
+        name: 'test'
+      },
+      key: 'test-key',
+      payload: {
+        foo: 'bar',
+        bar: 'baz',
+        date: new Date()
+      },
+      options: {}
+    };  
+  await lepus.publishMessage(publishOpts);
+  
+  // Subscribe to messages
+  let subscribeOpts = {
+      exchange: {
+        type: 'topic',
+        name: 'test'
+      },
+      key: 'test-key',
+      queue: {
+        name: 'test-key-queue'
+      }
+  };
+  
+  await lepus.subscribeMessage(subscribeOpts, async (msgContent, msgRaw) => {
+    
+    console.log('Hurray, we have received a message!');
+    console.log('=> msgContent', msgContent);
+    console.log('=> msgRaw', msgRaw);
+    
+  });
+  
+  
+  // In case we want to disconnect ...
+  // await lepus.disconnect();
+  
+})();
+
+```
+
 ### API
 
 See [API docs](./docs/api-docs.md)

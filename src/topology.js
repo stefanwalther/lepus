@@ -1,7 +1,8 @@
-const validator = require('./validations-topology');
 const path = require('path');
 const fs = require('fs');
 const yaml = require('js-yaml');
+
+const validator = require('./validations-topology');
 
 /**
  * Topologies.
