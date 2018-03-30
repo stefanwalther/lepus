@@ -3,7 +3,7 @@ const Lepus = require('./../src');
 (async () => {
   let lepus = new Lepus();
 
-  let opts = {
+  let subscribeOpts = {
     exchange: {
       type: 'topic',
       name: 'test'
@@ -13,7 +13,7 @@ const Lepus = require('./../src');
       name: 'test-key-queue'
     }
   };
-  await lepus.subscribeMessage(opts, async (msgContent, msgRaw) => {
+  await lepus.subscribeMessage(subscribeOpts, async (msgContent, msgRaw) => {
     console.log('msgContent', msgContent);
     console.log('msgRaw.fields', msgRaw.fields);
   });

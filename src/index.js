@@ -21,14 +21,14 @@ const LOG_DETAIL = false;
 /**
  * Options
  *
- * @typedef {object} options
- * @param {retry_behavior} retry_behavior - Behavior how to retry connecting to the server in case of failure.
+ * @typedef {object} lepusOptions
+ * @property {RetryBehavior} retry_behavior - Behavior how to retry connecting to the server in case of failure.
  */
 
 /**
  * Retry behavior in case RabbitMQ is not available.
  *
- * @typedef {object} retry_behavior
+ * @typedef {object} RetryBehavior
  *
  * @property {number} retries - The maximum amount of times to retry the operation. Defaults to 10.
  *
@@ -48,13 +48,13 @@ class Lepus {
    * Constructor
    *
    * @param {rabbitConnectionDef} connectionConfig - Connection string or object to define the connection to RabbitMQ.
-   * @param {options} opts - Various options.
+   * @param {lepusOptions} lepusOpts - Various options.
    */
-  constructor(connectionConfig, opts = {}) {
+  constructor(connectionConfig, lepusOpts = {}) {
     this.connectionConfig = connectionConfig || 'amqp://guest:guest@localhost:5672';
-    this.opts = opts;
-    if (!opts.retry_behavior) {
-      opts.retry_behavior = require('./config/retry-behavior');
+    this.opts = lepusOpts;
+    if (!lepusOpts.retry_behavior) {
+      lepusOpts.retry_behavior = require('./config/retry-behavior');
     }
   }
 
@@ -70,11 +70,8 @@ class Lepus {
    *
    * Furthermore, in case there is already an existing connection available, this will be returned.
    * No new connection will be established.
-   *
-   * @param {rabbitConnectionDef} connOpts.server - Connection information for the server.
-   * @param {retry_behavior} connOpts.retry_behavior - Retry behavior for establishing the connection.
-   *
-   * @return {Promise} - Returns the promise as defined for amqplib.connect
+
+   * @return {Promise} - Returns the promise as defined for amqplib.connect.
    */
   connect() {
 
@@ -106,7 +103,8 @@ class Lepus {
 
   /**
    * Disconnect from the server.
-   * The cached connection will be destroyed.
+   *
+   * @description The cached connection will be destroyed.
    *
    * @returns {Promise<void>}
    */
@@ -118,21 +116,22 @@ class Lepus {
   }
 
   /**
+   * @typedef {object} ExchangeOptions
+   * @param {string} type - 'topic', 'direct'
+   * @param {string} name - Name of the exchange.
+   * @param {object?} argument - Misc arguments for the exchange.
+   */
+
+  /**
    * Post a message to RabbitMq.
    *
    * @param {object} opts - Configuration to use to publish a message.
 
-   * @param {object} opts.exchange - Information about the exchange.
-   * @param {string} opts.exchange.type - 'topic', 'direct'
-   * @param {string} opts.exchange.name - Name of the exchange.
-   * @param {object?} opts.exchange.argument - Misc arguments for the exchange.
+   * @param {ExchangeOptions} opts.exchange - Information about the exchange.
    *
    * @param {string} opts.key - Key to publish the message.
-
    * @param {object?} opts.payload - The message to post.
-
    * @param {object?} opts.options - Options to publish.
-
    * @param {string?} opts.correlationId - RabbitMQ's correlationId.
    *
    * @returns {Promise}
@@ -151,9 +150,23 @@ class Lepus {
   }
 
   /**
+   * @typedef {object} QueueOptions - Options for the queue.
+   * @property {string} name - Name of the queue.
+   */
+
+  /**
+   * Subscribe to a message.
    *
-   * @param {object} opts
-   * @returns {Promise<void>}
+   * @param {object} opts - Options to pass in.
+   * @param {function} fn - Function to resolve for every message.
+   *
+   * @param {ExchangeOptions} opts.exchange - Information about the exchange.
+   * @param {QueueOptions} opts.queue - Information about the queue.
+   *
+   * @param {string} opts.key - The routing-key.
+   *
+   *
+   * @returns {Promise}
    */
   async subscribeMessage(opts, fn) {
 
@@ -184,9 +197,7 @@ class Lepus {
     }, {noAck: false});
 
     // Await channel.close();
-
   }
-
 }
 
 module.exports = Lepus;

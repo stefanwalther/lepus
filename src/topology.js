@@ -5,9 +5,15 @@ const yaml = require('js-yaml');
 
 /**
  * Topologies.
+ * @class
  */
 class Topology {
 
+  /**
+   * Instantiate a new Topology.
+   * @param file
+   * @constructor
+   */
   constructor(file) {
     this.file = null;
     this.topology = null;
@@ -27,6 +33,10 @@ class Topology {
 
   }
 
+  /**
+   *
+   * @returns {*}
+   */
   get topics() {
     if (this.topology && this.topology.topics) {
       return this.topology.topics;
@@ -49,6 +59,8 @@ class Topology {
   }
 
   /**
+   * @todo document properly
+   *
    * Load the topology file and return a topology class.
    * Runs all validations first.
    * The file can either be a valid yml or json file.
@@ -64,6 +76,10 @@ class Topology {
     }
   }
 
+  /**
+   *
+   * @private
+   */
   _addPrototypes() {
 
     if (this.topology) {
@@ -105,6 +121,8 @@ class Topology {
    * Validate the topology file.
    *
    * Just throws the errors of the validators ...
+   *
+   * @private
    */
   _validate(file) {
     validator.validateTopologyFile(file);

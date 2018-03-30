@@ -2,6 +2,11 @@ const path = require('path');
 const fs = require('fs');
 const yaml = require('js-yaml');
 
+/**
+ * Helper method to validate if the given string contains valid JSON.
+ * @param {string} str - The string to validate.
+ * @returns {boolean}
+ */
 function isJson(str) {
   try {
     JSON.parse(str);
@@ -22,6 +27,8 @@ class ValidatorTopology {
    * - The file has to be either a .yml or a .json file
    *
    * This method does not validate the content of the file.
+   *
+   * @static
    */
   static validateTopologyFile(file) {
 
@@ -44,6 +51,8 @@ class ValidatorTopology {
    *
    * @param {String} file - Absolute path the the file.
    * @returns {boolean} - Returns true if no error occurred, otherwise will throw the error.
+   *
+   * @static
    */
   static validateTopologyFileStructure(file) {
 

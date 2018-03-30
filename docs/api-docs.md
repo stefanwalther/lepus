@@ -3,14 +3,13 @@
 <dl>
 <dt><a href="#Lepus">Lepus</a></dt>
 <dd></dd>
+<dt><a href="#Topology">Topology</a></dt>
+<dd></dd>
 </dl>
 
 ## Members
 
 <dl>
-<dt><a href="#Topology">Topology</a></dt>
-<dd><p>Topologies.</p>
-</dd>
 <dt><a href="#ValidatorTopology">ValidatorTopology</a></dt>
 <dd><p>Validator for topology files.</p>
 </dd>
@@ -25,6 +24,11 @@
 fails, the operation will retry as defined in opts.retry_behavior.</p>
 <p>Furthermore, in case there is already an existing connection available, this will be returned.
 No new connection will be established.</p>
+</dd>
+<dt><a href="#value">value(file)</a></dt>
+<dd></dd>
+<dt><a href="#isJson">isJson(str)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Helper method to validate if the given string contains valid JSON.</p>
 </dd>
 <dt><a href="#value">value()</a></dt>
 <dd><p>Validate the topology file:</p>
@@ -46,10 +50,10 @@ No new connection will be established.</p>
 <dd><p>RabbitMQ Server definition.</p>
 <p>Note: passing the Connection definition as an object is not supported, yet.</p>
 </dd>
-<dt><a href="#options">options</a> : <code>object</code></dt>
+<dt><a href="#lepusOptions">lepusOptions</a> : <code>object</code></dt>
 <dd><p>Options</p>
 </dd>
-<dt><a href="#retry_behavior">retry_behavior</a> : <code>object</code></dt>
+<dt><a href="#RetryBehavior">RetryBehavior</a> : <code>object</code></dt>
 <dd><p>Retry behavior in case RabbitMQ is not available.</p>
 </dd>
 </dl>
@@ -61,9 +65,12 @@ No new connection will be established.</p>
 <a name="Topology"></a>
 
 ## Topology
+**Kind**: global class  
+<a name="new_Topology_new"></a>
+
+### new Topology()
 Topologies.
 
-**Kind**: global variable  
 <a name="ValidatorTopology"></a>
 
 ## ValidatorTopology
@@ -82,12 +89,34 @@ Furthermore, in case there is already an existing connection available, this wil
 No new connection will be established.
 
 **Kind**: global function  
-**Returns**: <code>Promise</code> - - Returns the promise as defined for amqplib.connect  
+**Returns**: <code>Promise</code> - - Returns the promise as defined for amqplib.connect.  
+<a name="value"></a>
+
+## value(file)
+**Kind**: global function  
+**Todo**
+
+- [ ] document properly
+
+Load the topology file and return a topology class.
+Runs all validations first.
+The file can either be a valid yml or json file.
+
 
 | Param | Type | Description |
 | --- | --- | --- |
-| connOpts.server | [<code>rabbitConnectionDef</code>](#rabbitConnectionDef) | Connection information for the server. |
-| connOpts.retry_behavior | [<code>retry_behavior</code>](#retry_behavior) | Retry behavior for establishing the connection. |
+| file | <code>String</code> | The absolute path to the file containing the topology (can be either a .json or a .yml/.yaml file) |
+
+<a name="isJson"></a>
+
+## isJson(str) ⇒ <code>boolean</code>
+Helper method to validate if the given string contains valid JSON.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| str | <code>string</code> | The string to validate. |
 
 <a name="value"></a>
 
@@ -118,20 +147,21 @@ RabbitMQ Server definition.
 Note: passing the Connection definition as an object is not supported, yet.
 
 **Kind**: global typedef  
-<a name="options"></a>
+<a name="lepusOptions"></a>
 
-## options : <code>object</code>
+## lepusOptions : <code>object</code>
 Options
 
 **Kind**: global typedef  
+**Properties**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | --- | --- | --- |
-| retry_behavior | [<code>retry_behavior</code>](#retry_behavior) | Behavior how to retry connecting to the server in case of failure. |
+| retry_behavior | [<code>RetryBehavior</code>](#RetryBehavior) | Behavior how to retry connecting to the server in case of failure. |
 
-<a name="retry_behavior"></a>
+<a name="RetryBehavior"></a>
 
-## retry_behavior : <code>object</code>
+## RetryBehavior : <code>object</code>
 Retry behavior in case RabbitMQ is not available.
 
 **Kind**: global typedef  
@@ -141,7 +171,7 @@ Retry behavior in case RabbitMQ is not available.
 | Name | Type | Description |
 | --- | --- | --- |
 | retries | <code>number</code> | The maximum amount of times to retry the operation. Defaults to 10. |
-| enabled | <code>boolean</code> | Whether retry is enabled at all or not (defaults to true); setting to false is equal to keeping [retry_behavior](#retry_behavior) empty. |
+| enabled | <code>boolean</code> | Whether retry is enabled at all or not (defaults to true); setting to false is equal to keeping [retry_behavior](retry_behavior) empty. |
 | interval | <code>number</code> | Interval in ms. |
 | times | <code>number</code> | Amount of times the given operation should be retried. |
 | attempts | <code>number</code> | Readonly, current amount of attempts. |

@@ -3,7 +3,7 @@ const Lepus = require('./../src');
 (async () => {
   let lepus = new Lepus();
 
-  let opts = {
+  let publishOpts = {
     exchange: {
       type: 'topic',
       name: 'test'
@@ -18,7 +18,7 @@ const Lepus = require('./../src');
   };
 
   for (let i = 0; i < 1000; i++) {
-    await lepus.publishMessage(opts);
+    await lepus.publishMessage(publishOpts);
   }
 
   await lepus.disconnect();
