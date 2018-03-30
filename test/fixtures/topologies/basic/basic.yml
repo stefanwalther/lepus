@@ -11,7 +11,6 @@
     options:
       correlationId: "{{correlation_id}}"
       
-      
 - queues:
   - id: q-e1
     for: e1
