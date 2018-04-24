@@ -47,7 +47,7 @@
     "fs-extra": "^5.0.0",
     "joi": "^13.1.0",
     "js-yaml": "^3.10.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.9",
     "promise-retry": "^1.1.1",
     "winster": "^0.2.9"
   },
