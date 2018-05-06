@@ -1,5 +1,6 @@
 const Lepus = require('./../../src/');
 const sinon = require('sinon');
+const sleep = require('sleep');
 
 describe('INTEGRATION => publishMessage', () => {
   let lepus = null;
@@ -31,6 +32,8 @@ describe('INTEGRATION => publishMessage', () => {
 
     let spy = sinon.stub().resolves();
     await lepus.subscribeMessage(subscribeOpts, spy);
+
+    sleep.sleep(2);
     expect(spy).to.have.been.calledOnce;
 
     expect(spy.firstCall.args[0]).to.be.empty;
