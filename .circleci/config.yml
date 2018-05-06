@@ -4,7 +4,7 @@ jobs:
     environment:
       DOCKER_VER: "17.11.0-ce"
       DOCKER_TRACK: "edge"  # edge or stable
-      NODE_VER: "8.6.0"
+      NODE_VER: "8.10.0"
       RABBITMQ_VER: "latest"
     docker:
       - image: node:$NODE_VER
