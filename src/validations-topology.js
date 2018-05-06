@@ -75,7 +75,6 @@ class ValidatorTopology {
         try {
           yaml.safeLoad(fs.readFileSync(file, 'utf8'));
         } catch (e) {
-          console.log(e);
           throw e;
         }
         break;
