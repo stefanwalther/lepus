@@ -2,7 +2,7 @@ version: '2'
 services:
 
   rabbitmq:
-    image: "sammlerio/rabbitmq"
+    image: "sammlerio/rabbitmq:latest@sha256:7a295c01e08647990a8037be06c8dbd21824e688cdd2f3c56ff0a12f7353bcbe"
     ports:
       - "8080:15672"
       - "5672:5672"
