@@ -2,12 +2,14 @@ const Lepus = require('./../../src/');
 const sinon = require('sinon');
 const sleep = require('sleep');
 
-describe('INTEGRATION => publishMessage', () => {
+xdescribe('INTEGRATION => publishMessage', () => {
   let lepus = null;
+
   before(async () => {
     lepus = new Lepus();
     await lepus.connect();
   });
+
   after(async () => {
     await lepus.disconnect();
   });

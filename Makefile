@@ -12,6 +12,10 @@ up: 							## Bring up the environment.
 	docker-compose up
 .PHONY: up
 
+up-deps:					## Bring up all the dependencies
+	docker-compose up
+.PHONY: up-deps
+
 down:							## Bring the environment down.
 	docker-compose down
 .PHONY: down
