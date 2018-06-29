@@ -4,7 +4,7 @@ const _ = require('lodash');
 const logger = require('winster').instance();
 
 function encode(doc) {
-  return new Buffer(JSON.stringify(doc));
+  return Buffer.from(JSON.stringify(doc));
 }
 
 let _connection = null;
