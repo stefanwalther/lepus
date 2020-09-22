@@ -40,7 +40,9 @@
     "test:unit:coverage": "nyc node_modules/.bin/_mocha ./test/unit/**/*.spec.js --require './test/mocha.conf.js' --report lcovonly -- -R spec && codecov",
     "test:integration:coverage": "nyc node_modules/.bin/_mocha ./test/integration/**/*.spec.js --require './test/mocha.conf.js' --report lcovonly -- -R spec && codecov",
     "test:coverage": "nyc node_modules/.bin/_mocha ./test/**/*.spec.js --require './test/mocha.conf.js' --report lcovonly -- -R spec && codecov",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "amqplib": "^0.5.2",
@@ -48,7 +50,8 @@
     "js-yaml": "^3.12.0",
     "lodash": "^4.17.10",
     "promise-retry": "^1.1.1",
-    "winster": "^0.2.11"
+    "winster": "^0.2.11",
+    "snyk": "^1.399.1"
   },
   "devDependencies": {
     "babel-core": "6.26.3",
@@ -70,5 +73,6 @@
     "sinon": "8.1.1",
     "sinon-chai": "3.2.0",
     "sleep": "5.2.4"
-  }
+  },
+  "snyk": true
 }
